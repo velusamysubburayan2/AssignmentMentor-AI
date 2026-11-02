@@ -1,3 +1,44 @@
+/* AI Prompt Used For this Assignment:
+Open live browser using Playwright MCP server. Maximize the browser.
+
+Your task is to execute the following manual steps as human user would, One step at a time.
+Do not combine steps. After each step, verify the expected result before proceeding.
+
+Rules:
+1.Interact through only playwright MCP browser commands.
+2.Wait for page loads and network request to complete.
+3.If an element is not immediately available , retry intelligently.
+4.Take screenshot for every page and create Screenshot folder put all the screenshot images here.
+5.Stop immediately and report any unexpected behavior or validation errors.
+
+Application URL=https://rahulshettyacademy.com/client/#/auth/login
+
+Step 1:
+Login to the application with username and password.
+Expected Result:
+The products present in page total is greater than 1.
+
+Step 2:
+select the first product present in catalog , click add to cart and also save this product title, Click cart button.
+Expected Result:
+Verify the cart page product title with the product title of what product added in the previous page.
+
+Step 3:
+Take Product Title, quantity, Price values and put it in the array variable.Click checkout.
+Expected Result:
+Verify whether Payment method is visible or not. Under Shipping information part, verify user Mail is visible or not.
+
+Step 4:
+At the same Shipping information part, Select country as India and click place order button.
+Expected Result:
+Verify 'Thankyou for the order.' is visible or not. verify Quantity, Price, Product all these with cart page array variable values.
+
+Create Assignment1AIAgent.spec.js under tests folder.
+Write the playwright script code for Above steps in that file.
+For final time, Run that file in the terminal.
+
+*/
+
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const { test, expect } = require('@playwright/test');
