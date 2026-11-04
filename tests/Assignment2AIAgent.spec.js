@@ -53,4 +53,5 @@ test('complete purchase and verify the order details', async ({ page }) => {
   expect(createOrderResponse.status()).toBe(201);
   await orderConfirmationPage.verifyOrder(cartItem);
   const timeout = 15000;
+  const timeout1 = 15000;
 });
