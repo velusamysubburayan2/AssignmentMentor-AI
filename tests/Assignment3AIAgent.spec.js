@@ -1,3 +1,19 @@
+/*
+Distinguish between AI Agent code generation vs CLI codegen:
+CLI codegen: 
+you can perform the action or testcase steps manually on the live browser
+using playwright inspector then it provides playwright testScript.
+But i couldn't able to store the value present in the application
+if that needed for the test validation. 
+You can record and get the script. you can assert the text , assert the visibility,
+assert the value, get the locator you place at the page element while in the record mode.
+
+AI agent:
+You can do All the features described above in a single click if you use AI agent.
+Only one thing to remember give the appropriate prompt based on the requirements.
+Then all will be accomplished automatically if you use AI agent.
+*/
+
 import { test, expect } from '@playwright/test';
 import dotenv from 'dotenv';
 import { LoginPage } from '../PageObjects/LoginPage.js';
