@@ -21,4 +21,23 @@ test('book an event and verify the booking', async ({ page }) => {
 
   const browseEventsButton = page.getByRole('button', { name: /Browse Events/i });
   await expect(browseEventsButton).toBeVisible();
+  await browseEventsButton.click();
+  await page.waitForURL(/events/i);
+  await page.waitForLoadState('networkidle');
+
+  const bookNowButtons = page.getByRole('button', { name: /Book now/i });
+  await expect(bookNowButtons.first()).toBeVisible();
+  expect(await bookNowButtons.count()).toBeGreaterThan(0);
+
+  const firstBookNowButton = bookNowButtons.first();
+  const eventTitleLocator = firstBookNowButton
+    .locator('xpath=ancestor::*[.//h1 or .//h2 or .//h3 or .//h4][1]')
+    .getByRole('heading')
+    .first();
+  const eventTitle = (await eventTitleLocator.innerText()).trim();
+  expect(eventTitle).not.toBe('');
+
+  await firstBookNowButton.click();
+  await page.waitForLoadState('networkidle');
+  await expect(page.getByText(eventTitle, { exact: true })).toBeVisible();
 });
