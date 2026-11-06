@@ -64,4 +64,5 @@ test('complete purchase and verify the order details', async ({ page }) => {
   const createOrderResponse = await checkoutPage.placeOrder();
   expect(createOrderResponse.status()).toBe(201);
   await orderConfirmationPage.verifyOrder(cartItem);
+  console.log('I am in Assignment3AIAgent spec file');
 });
