@@ -1,0 +1,190 @@
+To make 3 commits:
+Objective:
+Write playwright automation script by first run the workflow manually with using of playwright MCP server on a live browser.
+
+Rules:
+First run a step manually then for that step write a script. Follow this for every step.
+Don't touch the GitHub Remote repo.
+
+1.Before interacting with element :
+ -Find the best locators.
+ -Use getbytext,getbyrole,getbylabel,getbyplaceholder as much as possible.
+ -Use css/xpath if necessary.
+2.After interacted with element :
+ -wait for page to load and wait for network request to complete.
+Git rules to follow:
+1.Start the Git MCP server if not started already.
+2.After every 2 steps completion, commit the code change with clear commit message.
+Don't push the code to GitHub remote repo.
+
+manual steps:
+Application URL: https://eventhub.rahulshettyacademy.com/login
+1.Login to the application with valid username and password
+"userName":"mvsrayan1@gmail.com",
+"passWord": "Boopalan@231996"
+2.Verify Browse Events button present in the home page or not.
+
+3.Click Browse Events button. And Verify the url of the page contains 'events', verify atleast one event is present in the page.
+4.Pick first event present in the page  and also capture event title. Click Book now button.
+verify the Event title in the page with stored event title in the previous page.
+
+5.Enter fullname as 'Subburayan Velusamy', email as 'mvsrayan1@gmail.com', phonenumber as '9080751313' and add 2 tickets 
+and the click confirm booking then verify booking confirmed text is present or not.
+Capture and store booking ref,price,tickets.
+6.CLick view my bookings. Select my booked event with stored booking ref.
+Capture and verify the values of booking ref,price,tickets with stored values in the previous page.
+
+Deliverables:
+1.Final automation script included all the manual steps.
+2.Git:
+ -Changes must have committed with clear comment.
+ -The commit must have done for every 2 steps.
+
+Git MCP server commits:
+02ea352 (HEAD -> main) Automate EventHub booking and history verification
+ad7320b Automate event discovery and selection
+1da757b Automate EventHub login and home validation
+
+------------------------------------------------------------------
+Conflict 1:Testing Same Line Conflict
+Manual Steps:
+1.Create a new branch from main and name that  branch as assignment4.
+2.Checkout from assignment4 to main.
+3.Add (const timeout = 10000;) at the end of the line in the file-Assignment3AIAgent.spec.js.
+Example: test('complete purchase and verify the order details', async ({ page }) => {
+//last line
+const timeout = 10000;
+});
+4.stage it and commit it with comment 'Added timeout variable'.
+5.Now Checkout to assignment4.
+6..Add (const timeout = 15000;) at the end of the line in the file-Assignment3AIAgent.spec.js.
+Example: test('complete purchase and verify the order details', async ({ page }) => {
+//last line
+const timeout = 15000;
+});
+7.Now stage it and commit with the comment 'Added timeout variable with the new value'.
+8.Merge it to the main. And will get the merge conflict issue.
+Solution:
+9.Resolve this conflict issue with,
+  -First revert the last commit in assignment4.
+  -Second revert the last commit in main.
+
+Git MCP server Used Commands-AI:
+git status
+git branch assignment4 main
+git checkout main
+git add tests/Assignment3AIAgent.spec.js
+git commit -m "Added timeout variable"
+git checkout assignment4
+git add tests/Assignment3AIAgent.spec.js
+git commit -m "Added timeout variable with the new value"
+git checkout main
+git merge assignment4
+git merge --abort
+git checkout assignment4
+git revert --no-edit HEAD
+git checkout main
+git revert --no-edit HEAD
+git merge --no-edit assignment4
+git status
+git --no-pager log --oneline --decorate -7
+------------------------------------------------------------------
+Conflict 2:Testing one side deleting a file the other modified.
+Manual Steps:
+checkout to main branch ,ignore if already in main branch.
+1.Add (const timeout = 10000;) at the end of the line in the file-Assignment3AIAgent.spec.js.
+Example: test('complete purchase and verify the order details', async ({ page }) => {
+//last line
+const timeout = 10000;
+});
+2.stage it and commit it with comment 'Added timeout variable'.
+3.Now Checkout to assignment4.
+4.delete file-Assignment3AIAgent.spec.js.
+5.Stage it and commit with comment 'Deleted Assignment3AIAgent.spec.js'.
+6.Merge it to the main. And will get the merge conflict issue.
+7.Resolve this conflict issue with,
+  -First revert the last commit in assignment4.
+  -Second revert the last commit in main.
+
+Git MCP server Used Commands-AI:
+git status
+git checkout main
+git add tests/Assignment3AIAgent.spec.js
+git commit -m "Added timeout variable"
+git checkout assignment4
+git add tests/Assignment3AIAgent.spec.js
+git commit -m "Deleted Assignment3AIAgent.spec.js"
+git checkout main
+git merge assignment4
+git merge --abort
+git checkout assignment4
+git revert --no-edit HEAD
+git checkout main
+git revert --no-edit HEAD
+git merge --no-edit assignment4
+git status
+git --no-pager log --oneline --decorate -7
+------------------------------------------------------------------
+Conflict 3:conflicting changes inside the same function.
+Manual Steps:
+checkout to main branch ,ignore if already in main branch.
+1.Add (const timeout = 10000;) at the end of the line in the file-Assignment3AIAgent.spec.js.
+Example: test('complete purchase and verify the order details', async ({ page }) => {
+//last line
+const timeout = 10000;
+});
+2.stage it and commit it with comment 'Added timeout variable'.
+3.Now Checkout to assignment4.
+4.Add (console.log('I am in Assignment3AIAgent spec file');) at the end of the line in the file-Assignment3AIAgent.spec.js.
+Example: test('complete purchase and verify the order details', async ({ page }) => {
+//last line
+console.log('I am in Assignment3AIAgent spec file')});
+5.save the file.
+6.Stage it and commit with comment 'Added test console in the last line of that file'.
+7.Merge it to the main. And will get the merge conflict issue.
+8.Resolve this conflict issue with,
+  -First revert the last commit in assignment4.
+  -Second revert the last commit in main.
+
+Git MCP server Used Commands-AI:
+git status
+git checkout main
+git add tests/Assignment3AIAgent.spec.js
+git commit -m "Added timeout variable"
+git checkout assignment4
+git add tests/Assignment3AIAgent.spec.js
+git commit -m "Added test console in the last line of that file"
+git checkout main
+git merge assignment4
+git merge --abort
+git checkout assignment4
+git revert --no-edit HEAD
+git checkout main
+git revert --no-edit HEAD
+git merge --no-edit assignment4
+git status
+git --no-pager log --oneline --decorate -6
+------------------------------------------------------------------
+Cherry-Pick test:
+Manual Steps:
+checkout to main branch ,ignore if already in main branch.
+1. Copy Assignment3AIAgent.spec.js file and paste that file in the same folder with the new file name 'Assignment3AIAgentCherryPickTest.spec.js'.
+2.Stage it and Commit it with comment 'Copied the assignment3 with the new name for cherry-pick test'.
+3.Now Checkout to assignment4.
+4.Cherry-pick the last commit we made it in main branch to this current branch(assignment4).
+5.Report me the last commit whether added in this branch or not.
+6.-First revert the last commit in assignment4.
+  -Second revert the last commit in main.
+
+Git MCP server Used Commands-AI:
+git status
+git add tests/Assignment3AIAgentCherryPickTest.spec.js
+git commit -m "Copied the assignment3 with the new name for cherry-pick test"
+git checkout assignment4
+git cherry-pick ba29081b9fdc54638aef3bd1c7f20104357ae74c
+git revert --no-edit HEAD
+git checkout main
+git revert --no-edit HEAD
+git status
+git --no-pager log --oneline --decorate -7
+------------------------------------------------------------------
